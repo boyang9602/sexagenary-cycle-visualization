@@ -1,12 +1,12 @@
 /**
- * English locale for <sexagenary-cycle>.
+ * English locale for <ganzhi-cycle>.
  *
  * Symbols and words are distinct:
  *   - *Symbols arrays drive the rings (Chinese glyphs for stems/branches,
  *     emoji for animals).
  *   - *Words arrays drive the centre, markers, tooltips, and aria labels.
  *
- * @satisfies {import('../sexagenary-cycle.js').LocaleDef}
+ * @satisfies {import('../ganzhi-cycle.js').LocaleDef}
  */
 const en = {
   label: 'English',

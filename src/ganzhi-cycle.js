@@ -1,13 +1,13 @@
 /**
- * <sexagenary-cycle> Web Component
+ * <ganzhi-cycle> Web Component
  *
  * Usage:
- *   <script type="module" src="sexagenary-cycle.js"></script>
- *   <sexagenary-cycle></sexagenary-cycle>
- *   <sexagenary-cycle year="1984"></sexagenary-cycle>        <!-- AD 1984 -->
- *   <sexagenary-cycle year="-3"></sexagenary-cycle>          <!-- 4 BC   -->
- *   <sexagenary-cycle date="2026-05-23"></sexagenary-cycle>
- *   <sexagenary-cycle lang="en" year="2026"></sexagenary-cycle>
+ *   <script type="module" src="ganzhi-cycle.js"></script>
+ *   <ganzhi-cycle></ganzhi-cycle>
+ *   <ganzhi-cycle year="1984"></ganzhi-cycle>        <!-- AD 1984 -->
+ *   <ganzhi-cycle year="-3"></ganzhi-cycle>          <!-- 4 BC   -->
+ *   <ganzhi-cycle date="2026-05-23"></ganzhi-cycle>
+ *   <ganzhi-cycle lang="en" year="2026"></ganzhi-cycle>
  *
  * Attributes:
  *   year  — Astronomical year integer (AD positive, 0 = 1 BC, negative = earlier BC)
@@ -16,7 +16,7 @@
  *           Falls back to <html lang="…"> then to "zh".
  *
  * Adding a locale at runtime:
- *   import { registerLocale } from './sexagenary-cycle.js';
+ *   import { registerLocale } from './ganzhi-cycle.js';
  *   import jaLocale from './locales/ja.js';
  *   registerLocale('ja', jaLocale);
  */
@@ -314,7 +314,7 @@ TPL.innerHTML = `
 
 // ── Component class ───────────────────────────────────────────────────────────
 
-class SexagenaryCycle extends HTMLElement {
+class GanzhiCycle extends HTMLElement {
 
   static get observedAttributes() { return ['year', 'date', 'lang']; }
 
@@ -935,4 +935,4 @@ class SexagenaryCycle extends HTMLElement {
   _q(id) { return this._root.getElementById(id); }
 }
 
-customElements.define('sexagenary-cycle', SexagenaryCycle);
+customElements.define('ganzhi-cycle', GanzhiCycle);

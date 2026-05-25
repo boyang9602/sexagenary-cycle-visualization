@@ -1,8 +1,8 @@
 // de.js
 /**
- * German locale for <sexagenary-cycle>.
+ * German locale for <ganzhi-cycle>.
  *
- * @satisfies {import('../sexagenary-cycle.js').LocaleDef}
+ * @satisfies {import('../ganzhi-cycle.js').LocaleDef}
  */
 const de = {
   label: 'Deutsch',

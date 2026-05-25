@@ -1,11 +1,11 @@
 // ja.js
 /**
- * Japanese locale for <sexagenary-cycle>.
+ * Japanese locale for <ganzhi-cycle>.
  *
  * Symbols and words coincide in Japanese, so all *Words fields are null —
  * the component falls back to the corresponding *Symbols array.
  *
- * @satisfies {import('../sexagenary-cycle.js').LocaleDef}
+ * @satisfies {import('../ganzhi-cycle.js').LocaleDef}
  */
 const ja = {
   label: '日本語',

@@ -1,4 +1,4 @@
-# &lt;sexagenary-cycle&gt;
+# &lt;ganzhi-cycle&gt;
 
 A zero-dependency web component that renders the 60-year sexagenary cycle
 (六十甲子) of Heavenly Stems (天干) and Earthly Branches (地支) as an
@@ -14,7 +14,7 @@ Or use directly from a CDN:
 
 ```html
 <script type="module"
-  src="https://cdn.jsdelivr.net/npm/ganzhi-cycle/src/sexagenary-cycle.js">
+  src="https://cdn.jsdelivr.net/npm/ganzhi-cycle/src/ganzhi-cycle.js">
 </script>
 ```
 
@@ -22,16 +22,16 @@ Or use directly from a CDN:
 
 ```html
 <!-- Defaults to today's year; language auto-detected from <html lang="…"> -->
-<sexagenary-cycle></sexagenary-cycle>
+<ganzhi-cycle></ganzhi-cycle>
 
 <!-- Explicit year and language -->
-<sexagenary-cycle year="1984" lang="en"></sexagenary-cycle>
+<ganzhi-cycle year="1984" lang="en"></ganzhi-cycle>
 
 <!-- ISO date string — only the year part is used -->
-<sexagenary-cycle date="2026-05-23" lang="zh"></sexagenary-cycle>
+<ganzhi-cycle date="2026-05-23" lang="zh"></ganzhi-cycle>
 
 <!-- BC year: astronomical year 0 = 1 BC, negative = earlier BC -->
-<sexagenary-cycle year="-3" lang="en"></sexagenary-cycle>
+<ganzhi-cycle year="-3" lang="en"></ganzhi-cycle>
 ```
 
 ## Attributes
@@ -92,66 +92,110 @@ registerLocale('ja', jaLocale);
 ```
 
 ```html
-<sexagenary-cycle lang="ja" year="2026"></sexagenary-cycle>
+<ganzhi-cycle lang="ja" year="2026"></ganzhi-cycle>
 ```
 
 ## Locale shape reference
 
 ```js
-{
-  // ── Year picker ───────────────────────────────────────────────────────────
+/**
+ * English locale for <ganzhi-cycle>.
+ *
+ * Symbols and words are distinct:
+ *   - *Symbols arrays drive the rings (Chinese glyphs for stems/branches,
+ *     emoji for animals).
+ *   - *Words arrays drive the centre, markers, tooltips, and aria labels.
+ *
+ * @satisfies {import('../ganzhi-cycle.js').LocaleDef}
+ */
+const en = {
+  label: 'English',
+  // ── Year picker ──────────────────────────────────────────────────────────────
   pickerLabel: 'Year',
-  btnBC:       'BCE',
-  btnAD:       'CE',
+  btnBC:       'BC',
+  btnAD:       'AD',
   btnToday:    'Today',
-  yearUnit:    '',         // suffix after the number, e.g. '年' in Chinese
+  yearUnit:    '',
 
-  // ── Legend ────────────────────────────────────────────────────────────────
+  // ── Legend ───────────────────────────────────────────────────────────────────
   yang:     'Yang',
   yin:      'Yin',
-  elements: ['Wood', 'Fire', 'Earth', 'Metal', 'Water'],   // length 5
+  elements: ['Wood', 'Fire', 'Earth', 'Metal', 'Water'],
 
-  // ── Animal ring ───────────────────────────────────────────────────────────
-  // Length-12 array parallel to the 12 Earthly Branches.
-  // Chinese locales use characters; all others should use emoji.
-  animals:    ['🐭','🐂','🐯','🐰','🐲','🐍','🐴','🐑','🐒','🐓','🐕','🐷'],
+  // ── Symbols (displayed in the rings) ─────────────────────────────────────────
+
+  /**
+   * Heavenly Stems — Chinese glyphs stay in the stem ring regardless of locale.
+   * A locale like Japanese could supply variant Kanji here.
+   */
+  stemSymbols: ['甲', '乙', '丙', '丁', '戊', '己', '庚', '辛', '壬', '癸'],
+
+  /** Earthly Branches — same rationale as stemSymbols. */
+  branchSymbols: ['子', '丑', '寅', '卯', '辰', '巳', '午', '未', '申', '酉', '戌', '亥'],
+
+  /** Zodiac animals — emoji are universally understood symbols. */
+  animalSymbols: ['🐭', '🐂', '🐯', '🐰', '🐲', '🐍', '🐴', '🐑', '🐒', '🐓', '🐕', '🐷'],
+
+  /** Emoji-friendly font stack applied only to the animal ring. */
   animalFont: "'Noto Emoji','Segoe UI Emoji','Apple Color Emoji',sans-serif",
 
-  // ── Stem / branch translations ────────────────────────────────────────────
-  // null → show original Chinese symbols only (at markers, centre, aria).
-  // Provide arrays to add a romanisation or name alongside the symbols.
-  stems:    ['Jiǎ','Yǐ','Bǐng','Dīng','Wù','Jǐ','Gēng','Xīn','Rén','Guǐ'],
-  branches: ['Zǐ','Chǒu','Yín','Mǎo','Chén','Sì','Wǔ','Wèi','Shēn','Yǒu','Xū','Hài'],
+  // ── Words (displayed in centre, markers, tooltips, aria) ─────────────────────
+  // null → fall back to the corresponding *Symbols array.
 
-  // Called at markers and centre when stems/branches are provided.
-  // Also used as the full aria-label / tooltip ganzhi string.
-  fmtGanzhi: (origStem, origBranch, nameStem, nameBranch) =>
-    `${origStem}${origBranch} (${nameStem} ${nameBranch})`,
+  /**
+   * Pinyin romanisations for the 10 Heavenly Stems, parallel to stemSymbols:
+   * 甲 乙 丙 丁 戊 己 庚 辛 壬 癸
+   */
+  stemWords: ['Jiǎ', 'Yǐ', 'Bǐng', 'Dīng', 'Wù', 'Jǐ', 'Gēng', 'Xīn', 'Rén', 'Guǐ'],
 
-  // ── Title ─────────────────────────────────────────────────────────────────
+  /**
+   * Pinyin romanisations for the 12 Earthly Branches, parallel to branchSymbols:
+   * 子 丑 寅 卯 辰 巳 午 未 申 酉 戌 亥
+   */
+  branchWords: ['Zǐ', 'Chǒu', 'Yín', 'Mǎo', 'Chén', 'Sì', 'Wǔ', 'Wèi', 'Shēn', 'Yǒu', 'Xū', 'Hài'],
+
+  /**
+   * English animal names, parallel to animalSymbols.
+   * These are the words shown in the centre and tooltips; the ring itself
+   * always displays the emoji from animalSymbols.
+   */
+  animalWords: [
+    'Rat', 'Ox', 'Tiger', 'Rabbit', 'Dragon', 'Snake',
+    'Horse', 'Goat', 'Monkey', 'Rooster', 'Dog', 'Pig',
+  ],
+
+  /**
+   * Format a combined ganzhi label used in markers, the centre, and aria text.
+   * Receives symbols and words separately so the format can choose what to show.
+   *
+   * @param {string} stemSym    Stem symbol,  e.g. '甲'
+   * @param {string} branchSym  Branch symbol, e.g. '子'
+   * @param {string} stemWord   Stem word,    e.g. 'Jiǎ'
+   * @param {string} branchWord Branch word,  e.g. 'Zǐ'
+   */
+  fmtGanzhi: (stemSym, branchSym, stemWord, branchWord) =>
+    `${stemSym}${branchSym} (${stemWord} ${branchWord})`,
+
+  // ── Title ────────────────────────────────────────────────────────────────────
   centerTitle:   'Sexagenary Cycle',
-  displayMode:   'ring',    // 'center' | 'ring'
-  titleFontSize: 20,        // default / maximum font size for the title
-  minFontSize:   12,        // floor for dynamic arc shrinking (ring mode only)
+  displayMode:   'ring',
+  titleFontSize: 48,
+  minFontSize:   12,
 
-  // ── Accessibility ──────────────────────────────────────────────────────────
+  // ── Accessibility ─────────────────────────────────────────────────────────────
   svgTitle: 'Sexagenary Cycle',
   svgDesc:  'Wheel diagram of the 60-year cycle of Heavenly Stems and Earthly Branches',
 
-  // ── Footer ────────────────────────────────────────────────────────────────
+  // ── Footer ───────────────────────────────────────────────────────────────────
   footer: 'Five Elements \u2014 Heavenly Stems \u2014 Earthly Branches \u2014 Zodiac Animals',
 
-  // ── Formatters ────────────────────────────────────────────────────────────
-
-  /** Astronomical year → display string for markers. */
-  fmtYear: (astro) => astro <= 0 ? `${1 - astro} BCE` : `${astro} CE`,
-
-  /** Centre info line: polarity + element + animal. */
-  fmtInfo: (pol, elem, animal) => `${pol} ${elem}  ·  ${animal}`,
-
-  /** Legend entry label. */
+  // ── Formatters ───────────────────────────────────────────────────────────────
+  fmtYear:   (astro) => astro <= 0 ? `${1 - astro} BC` : `${astro} AD`,
+  fmtInfo:   (pol, elem, animal) => `${pol} ${elem}  ·  ${animal}`,
   fmtLegend: (pol, elem) => `${pol} ${elem}`,
-}
+};
+
+export default en;
 ```
 
 ## Arc title ring tuning
@@ -176,7 +220,7 @@ ganzhi-cycle/
 │   ├── locales/
 │   │   ├── zh.js          Simplified Chinese (built-in)
 │   │   └── en.js          English with Pinyin (built-in)
-│   └── sexagenary-cycle.js  Component + registerLocale export
+│   └── ganzhi-cycle.js  Component + registerLocale export
 ├── demo/
 │   └── index.html         Interactive demo with language switcher
 ├── package.json

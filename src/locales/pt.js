@@ -1,8 +1,8 @@
 // pt.js
 /**
- * Portuguese locale for <sexagenary-cycle>.
+ * Portuguese locale for <ganzhi-cycle>.
  *
- * @satisfies {import('../sexagenary-cycle.js').LocaleDef}
+ * @satisfies {import('../ganzhi-cycle.js').LocaleDef}
  */
 const pt = {
   label: 'Português',

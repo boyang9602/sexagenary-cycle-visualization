@@ -1,9 +1,9 @@
 // vi.js
 /**
- * Vietnamese locale for <sexagenary-cycle>.
+ * Vietnamese locale for <ganzhi-cycle>.
  * Note: Vietnamese zodiac replaces Rabbit with Cat.
  *
- * @satisfies {import('../sexagenary-cycle.js').LocaleDef}
+ * @satisfies {import('../ganzhi-cycle.js').LocaleDef}
  */
 const vi = {
   label: 'Tiếng Việt',

@@ -1,8 +1,8 @@
 // it.js
 /**
- * Italian locale for <sexagenary-cycle>.
+ * Italian locale for <ganzhi-cycle>.
  *
- * @satisfies {import('../sexagenary-cycle.js').LocaleDef}
+ * @satisfies {import('../ganzhi-cycle.js').LocaleDef}
  */
 const it = {
   label: 'Italiano',

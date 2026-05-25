@@ -1,8 +1,8 @@
 // ko.js
 /**
- * Korean locale for <sexagenary-cycle>.
+ * Korean locale for <ganzhi-cycle>.
  *
- * @satisfies {import('../sexagenary-cycle.js').LocaleDef}
+ * @satisfies {import('../ganzhi-cycle.js').LocaleDef}
  */
 const ko = {
   label: '한국어',

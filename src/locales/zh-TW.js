@@ -1,11 +1,11 @@
 // zh-Hant.js
 /**
- * Traditional Chinese locale for <sexagenary-cycle>.
+ * Traditional Chinese locale for <ganzhi-cycle>.
  *
  * Symbols and words coincide in Traditional Chinese, so all *Words fields are null —
  * the component falls back to the corresponding *Symbols array.
  *
- * @satisfies {import('../sexagenary-cycle.js').LocaleDef}
+ * @satisfies {import('../ganzhi-cycle.js').LocaleDef}
  */
 const zhTW = {
   label: '繁體漢字',

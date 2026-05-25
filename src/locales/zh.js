@@ -1,10 +1,10 @@
 /**
- * Simplified-Chinese locale for <sexagenary-cycle>.
+ * Simplified-Chinese locale for <ganzhi-cycle>.
  *
  * Symbols and words coincide in Chinese, so all *Words fields are null —
  * the component falls back to the corresponding *Symbols array.
  *
- * @satisfies {import('../sexagenary-cycle.js').LocaleDef}
+ * @satisfies {import('../ganzhi-cycle.js').LocaleDef}
  */
 const zh = {
   label: '简体汉字',

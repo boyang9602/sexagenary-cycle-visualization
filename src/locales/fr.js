@@ -1,8 +1,8 @@
 // fr.js
 /**
- * French locale for <sexagenary-cycle>.
+ * French locale for <ganzhi-cycle>.
  *
- * @satisfies {import('../sexagenary-cycle.js').LocaleDef}
+ * @satisfies {import('../ganzhi-cycle.js').LocaleDef}
  */
 const fr = {
   label: 'Français',

@@ -1,8 +1,8 @@
 // es.js
 /**
- * Spanish locale for <sexagenary-cycle>.
+ * Spanish locale for <ganzhi-cycle>.
  *
- * @satisfies {import('../sexagenary-cycle.js').LocaleDef}
+ * @satisfies {import('../ganzhi-cycle.js').LocaleDef}
  */
 const es = {
   label: 'Español',
